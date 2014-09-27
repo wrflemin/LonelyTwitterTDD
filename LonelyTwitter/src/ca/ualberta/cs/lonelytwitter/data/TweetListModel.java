@@ -24,10 +24,7 @@ public class TweetListModel {
 	 *            Tweet to be appended to this list
 	 */
 	public void addTweet(AbstractTweet tweet) {
-		if (hasTweet(tweet)) {
-			throw new IllegalArgumentException("Duplicate tweet error");
-		}
-
+		// TODO: Add only when it is not a duplicate
 		tweets.add(tweet);
 	}
 
@@ -37,7 +34,8 @@ public class TweetListModel {
 	 * @return the number of tweets in this list
 	 */
 	public int getCount() {
-		return tweets.size();
+		// TODO: return real count
+		return 0;
 	}
 
 	/**
@@ -48,10 +46,7 @@ public class TweetListModel {
 	 * @return true if this list contains the specified element
 	 */
 	public boolean hasTweet(AbstractTweet tweet) {
-		if (tweets.contains(tweet)) {
-			return true;
-		}
-
+		// TODO: Find if the tweet already exists
 		return false;
 	}
 
@@ -63,7 +58,7 @@ public class TweetListModel {
 	 *            Tweet to be removed from this list, if present.
 	 */
 	public void removeTweet(AbstractTweet tweet) {
-		tweets.remove(tweet);
+		// TODO: Remove tweet
 	}
 
 	/**
@@ -73,7 +68,8 @@ public class TweetListModel {
 	 * @return an array containing the tweets of the list.
 	 */
 	public AbstractTweet[] getTweets() {
-		return tweets.toArray(new AbstractTweet[getCount()]);
+		// TODO: return sorted list of tweets
+		return null;
 	}
 
 	/**
