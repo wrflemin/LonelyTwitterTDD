@@ -1,9 +1,12 @@
 package ca.ualberta.cs.lonelytwitter.data;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import ca.ualberta.cs.lonelytwitter.AbstractTweet;
+import ca.ualberta.cs.lonelytwitter.Tweet;
 
 public class TweetListModel {
 
@@ -25,6 +28,13 @@ public class TweetListModel {
 	 */
 	public void addTweet(AbstractTweet tweet) {
 		// TODO: Add only when it is not a duplicate
+		String tweetBody = tweet.getTweetBody();
+		
+		for (AbstractTweet oldTweets : tweets){
+			if (oldTweets.getTweetBody() == tweetBody){
+				throw new IllegalArgumentException();
+			}
+		}
 		tweets.add(tweet);
 	}
 
@@ -35,7 +45,7 @@ public class TweetListModel {
 	 */
 	public int getCount() {
 		// TODO: return real count
-		return 0;
+		return tweets.size();
 	}
 
 	/**
@@ -47,6 +57,13 @@ public class TweetListModel {
 	 */
 	public boolean hasTweet(AbstractTweet tweet) {
 		// TODO: Find if the tweet already exists
+		String tweetBody = tweet.getTweetBody();
+		
+		for (AbstractTweet oldTweets : tweets){
+			if (oldTweets.getTweetBody() == tweetBody){
+				return true;
+			}	
+		}
 		return false;
 	}
 
@@ -59,6 +76,7 @@ public class TweetListModel {
 	 */
 	public void removeTweet(AbstractTweet tweet) {
 		// TODO: Remove tweet
+		tweets.remove(tweet);
 	}
 
 	/**
@@ -67,9 +85,18 @@ public class TweetListModel {
 	 * 
 	 * @return an array containing the tweets of the list.
 	 */
-	public AbstractTweet[] getTweets() {
+	public List<AbstractTweet> getTweets() {
 		// TODO: return sorted list of tweets
-		return null;
+		Collections.sort(tweets, new Comparator<AbstractTweet>(){
+
+			public int compare(AbstractTweet tweet1, AbstractTweet tweet2)
+			{
+
+				// TODO Auto-generated method stub
+				return tweet1.getTweetDate().compareTo(tweet2.getTweetDate());
+			}
+		});
+		return tweets;
 	}
 
 	/**
@@ -88,4 +115,5 @@ public class TweetListModel {
 	public void clear() {
 		tweets.clear();
 	}
+	
 }
